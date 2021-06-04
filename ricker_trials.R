@@ -18,7 +18,7 @@ names(df) <- c("alpha", "beta")
 get_SMSY_Sgen <- function(a, b, int_lower, int_upper) {
   SMSY <- log(a)*(0.5-0.07*log(a))/b # Hilborn and Walters equation to estimate SMSY
   fun_Sgen <- function(Sgen, a, b, SMSY) {Sgen* a * exp( - b*Sgen) - SMSY}
-  Sgen <- uniroot(fun, interval=c(int_lower, int_upper), a=a, b=b, SMSY=SMSY)$root
+  Sgen <- uniroot(fun_Sgen, interval=c(int_lower, int_upper), a=a, b=b, SMSY=SMSY)$root
   est  <- data.frame(SMSY, Sgen)
   est
 }
@@ -46,8 +46,11 @@ for(i in 40:50) {
 }
 
 # Plot how SMSY and Sgen change with alpha and beta
+if(!dir.exists("figures"))
+dir.create("figures")
+
 # SMSY
-png("figures/fig_SMSY~alpha.png")
+png("figures/fig_SMSY~alpha.png", width=8,height=6, units="in", res=300)
 ggplot(df1, aes(x=alpha, y=SMSY, colour=beta)) +
   geom_point() +
   scale_colour_viridis_c() +
@@ -55,7 +58,7 @@ ggplot(df1, aes(x=alpha, y=SMSY, colour=beta)) +
 dev.off()
 
 # Sgen
-png("figures/fig_Sgen~alpha.png")
+png("figures/fig_Sgen~alpha.png", width=8,height=6, units="in", res=300)
 ggplot(df1, aes(x=alpha, y=Sgen, colour=beta)) +
   geom_point()+
   scale_colour_viridis_c() +
@@ -65,7 +68,7 @@ dev.off()
 # Both are very sensitive to beta. SMSY is more sensitive to alpha. Sgen not very sensitive to alpha.
 
 # All, alpha and beta axes
-png("figures/fig_beta~alpha.png")
+png("figures/fig_beta~alpha.png", width=8,height=6, units="in", res=300)
 ggplot(df1, aes(x=alpha, y=beta, color=SMSY, size=Sgen)) +
   geom_point()+
   scale_colour_viridis_c() +
@@ -73,7 +76,7 @@ ggplot(df1, aes(x=alpha, y=beta, color=SMSY, size=Sgen)) +
 dev.off()
 
 # All, Sgen and SMSY axes
-png("figures/fig_Sgen~SMSY.png")
+png("figures/fig_Sgen~SMSY.png", width=8,height=6, units="in", res=300)
 ggplot(df1, aes(x=SMSY, y=Sgen, color=alpha, size=beta)) +
   geom_point()+
   scale_colour_viridis_c() +
