@@ -5,10 +5,8 @@ library(purrr)
 options(scipen = 10, digits=9)
 
 # Make series of alpha and beta values
-# alphas <- seq(1.5,4, length.out=10)
-alphas <- 2 * seq(0.5,1.5,.1)
-#betas <- seq(1/10000,1/100000,length.out=10)
-betas <- 1/10000 * seq(0.5, 1.5, 0.1)
+alphas <- 2.2 * seq(0.5,1.5,.1) # alphas centered at 2.2, +/- 50%
+betas <- 1/(10000 * seq(0.5, 1.5, 0.1)) # betas centered at 1/10000 (carrying capacity =10000) with variation in carrying capacity +/- 50%
 # make into a data frame
 df <- expand.grid(alphas, betas)
 names(df) <- c("alpha", "beta")
