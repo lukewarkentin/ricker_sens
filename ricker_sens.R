@@ -2,6 +2,7 @@
 
 library(ggplot2)
 library(purrr)
+options(scipen = 10, digits=9)
 
 # Make series of alpha and beta values
 #alphas <- 2:4
@@ -32,7 +33,8 @@ check_Sgen <- function(a,b,S) {
   a*S*exp(-b*S)
 }
 # yes, correctly gets to SMSY
-cbind(check_Sgen(a=df1$alpha, b=df1$beta, S=df1$Sgen), df1$SMSY)
+plot(cbind(check_Sgen(a=df1$alpha, b=df1$beta, S=df1$Sgen), df1$SMSY))
+abline(a=0,b=1, col="orange")
 
 # Plot ricker curves with Sgen and SMSY
 plot(type="n", bty="l", x=0, y=0, xlim=c(0,15000), ylim=c(0,25000)) 
