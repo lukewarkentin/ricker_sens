@@ -5,10 +5,10 @@ library(purrr)
 options(scipen = 10, digits=9)
 
 # Make series of alpha and beta values
-#alphas <- 2:4
-alphas <- seq(1.5,4, length.out=10)
-#betas <- 1/(c(10000,20000,30000))
-betas <- seq(1/10000,1/100000,length.out=10)
+# alphas <- seq(1.5,4, length.out=10)
+alphas <- 2 * seq(0.5,1.5,.1)
+#betas <- seq(1/10000,1/100000,length.out=10)
+betas <- 1/10000 * seq(0.5, 1.5, 0.1)
 # make into a data frame
 df <- expand.grid(alphas, betas)
 names(df) <- c("alpha", "beta")
@@ -37,10 +37,10 @@ plot(cbind(check_Sgen(a=df1$alpha, b=df1$beta, S=df1$Sgen), df1$SMSY))
 abline(a=0,b=1, col="orange")
 
 # Plot ricker curves with Sgen and SMSY
-plot(type="n", bty="l", x=0, y=0, xlim=c(0,15000), ylim=c(0,25000)) 
+plot(type="n", bty="l", x=0, y=0, xlim=c(0,20000), ylim=c(0,20000)) 
 abline(a=0, b=1, lty=3, col="gray")
 #for(i in sample(1:nrow(df), size=5, replace=FALSE)) {
-for(i in 40:50) {
+for(i in 1:nrow(df1)) {
   curve(df1$alpha[i]*x * exp(-df1$beta[i]*x), add=TRUE, col=i)
   abline(v=df1$Sgen[i], col=i, lty=2)
   abline(v=df1$SMSY[i], col=i)
