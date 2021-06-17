@@ -5,7 +5,7 @@ library(purrr)
 options(scipen = 10, digits=9)
 
 # Make series of alpha and beta values
-alphas <- seq(1.01,7,by=0.25) # alphas centered at 2.2, +/- 50%. Uniroot function gives error if you include alpha =1
+alphas <- c(seq(1,2,0.1),seq(2,7,by=0.5)) # alphas values, higher resolution below 2. uniroot function used to get Sgen gives error if you include alpha =1
 betas <- 1/(10000 * seq(0.5, 1.5, 0.1)) # betas centered at 1/10000 (carrying capacity =10000) with variation in carrying capacity +/- 50%
 # make into a data frame
 df <- expand.grid(alphas, betas)
@@ -22,7 +22,7 @@ get_SMSY_Sgen <- function(a, b, int_lower, int_upper) {
   est
 }
 # get SMSY and Sgen in new data frame
-ndf <- pmap_dfr(list(df$alpha, df$beta, 0, 1/df$beta*2), get_SMSY_Sgen)
+ndf <- pmap_dfr(list(df$alpha, df$beta, -1, 1/df$beta*2), get_SMSY_Sgen)
 # bind SMSY and Sgen to alpha and beta
 df1 <- cbind(df, ndf)
 # function to check whether Sgen is correct. Should be the spawner number 
