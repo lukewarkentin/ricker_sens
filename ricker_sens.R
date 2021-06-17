@@ -5,7 +5,7 @@ library(purrr)
 options(scipen = 10, digits=9)
 
 # Make series of alpha and beta values
-alphas <- seq(1.1,7,by=1) # alphas centered at 2.2, +/- 50%
+alphas <- seq(1.01,7,by=0.25) # alphas centered at 2.2, +/- 50%. Uniroot function gives error if you include alpha =1
 betas <- 1/(10000 * seq(0.5, 1.5, 0.1)) # betas centered at 1/10000 (carrying capacity =10000) with variation in carrying capacity +/- 50%
 # make into a data frame
 df <- expand.grid(alphas, betas)
