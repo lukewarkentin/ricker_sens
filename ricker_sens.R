@@ -77,9 +77,10 @@ dev.off()
 
 # All, Sgen and SMSY axes
 png("figures/fig_Sgen~SMSY.png", width=8,height=6, units="in", res=300)
-ggplot(df1, aes(x=SMSY, y=Sgen, color=alpha, size=beta)) +
-  geom_point()+
+ggplot(df1, aes(x=SMSY, y=Sgen, color=alpha, fill=alpha, size=beta)) +
+  geom_point(shape=21)+
   scale_colour_viridis_c() +
+  scale_fill_viridis_c(alpha=0.5) +
   theme_bw()
 dev.off()
 
