@@ -2,7 +2,7 @@
 title: "Problems with fixed escapement goals and benchmarks based on stock-recruit models, in scenarios of variable and low productivity"
 author: "Luke Warkentin"
 date: "5/27/2022"
-output: html_document
+output: rmarkdown::github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -77,4 +77,5 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
 -->
