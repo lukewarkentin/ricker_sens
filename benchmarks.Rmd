@@ -62,20 +62,3 @@ Tools to account for low and/or variable $R/S$ for implementing the two options 
 * Using simulation modeling based on actual observations of $R/S$, trends in fecundity, body size, harvest etc.
 * Incorporate risk tolerance based on climate change predictions for ocean and freshwater conditions (precautionary)
  
-
-<!--
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
--->
