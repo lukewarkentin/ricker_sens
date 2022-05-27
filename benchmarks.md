@@ -6,11 +6,15 @@ Luke Warkentin
 
 ## Context
 
-Many salmon populations are at historic lows abundance.
+Many salmon populations are at historic low abundance.
 
 -   Recent downward trends of low productivity, smolt to adult survival,
     body size, age at return, eggs
 -   Increasing number of threatened and endangered populations.
+-   Unfavourable conditions for BC salmon:
+    -   Recent past: ocean (rapid ocean warming; Cheng et al. 2021) and
+        freshwater (floods, heat dome)
+    -   Projected based on climate change
 
 Current policy relies on status, usually compares abundance of spawners
 to a benchmark. Benchmarks can be based on estimated model parameters
