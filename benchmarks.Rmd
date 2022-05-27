@@ -32,8 +32,8 @@ Assumptions of benchmarks from model parameters:
 Problematic examples: 
 
 * $S_{gen}$ benchmark when actual recruits per spawner is below alpha and replacement (especially for multiple years)
-* $S_{gen}$ benchmark when alpha > 2.5 (Fig. \ref(fig:Sgen-alpha))
-* $S_{gen}$ benchmark when there is harvest
+* $S_{gen}$ benchmark when alpha < 2.5 (Fig. \ref(fig:Sgen-alpha))
+* $S_{gen}$ benchmark when there is harvest, especially uncertain harvest
 
 
 ```{r Sgen-alpha, fig.cap="Sgen values for given combinations of alpha and beta for a Ricker model", echo=FALSE}
@@ -55,7 +55,7 @@ Two potential solutions to these problems:
 * Set fixed escapement goal higher to account for cycles of low productivity, and use information from observed $R/S$, fecundity, etc., instead of just on model parameters alpha and beta and benchmarks derived from them.
 * Set escapement goals that vary (rule-based categorical and/or scaling) depending on various metrics, e.g.:
   * abundance of returns
-  * declining body size and/or fecundity
+  * body size and/or fecundity
   * risk of low productivity for future cohorts (e.g., habitat conditions such as unstable rivers, cumulative effects, climate change predictions for ocean and freshwater). In other words, if $R/S$ for future cohorts is expected to be <1, you need to 'bank' adult fish in the ocean for future spawning years that will have recruitment below replacement
   * past low recruitment years (to make up for low number of returning adults in subsequent years)
 
@@ -63,5 +63,7 @@ Tools to account for low and/or variable $R/S$ for implementing the two options 
 
 * Use life cycle models based on fecundity and survival rates (e.g., spawner to egg, egg to fry/smolt, smolt to adult) paired with recent and projected body size and fecundity data. Could be used in combination
 * Using simulation modeling based on actual observations of $R/S$, trends in fecundity, body size, harvest etc.
-* Incorporate risk tolerance based on climate change predictions for ocean and freshwater conditions (precautionary)
+* Incorporate risk tolerance based on climate change predictions for ocean and freshwater conditions (precautionary), either by:
+  * Coarse: Including more precaution/ buffer of escapement goal
+  * Fine: Linking observed conditions to fecundity / survival rates (e.g., ocean temps or flood ~ survival) and then using climate change projections to predict impact on future fecundity / survival rates
  

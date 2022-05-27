@@ -46,9 +46,9 @@ Problematic examples:
     benchmark when actual recruits per spawner is below alpha and
     replacement (especially for multiple years)
 -   ![S\_{gen}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;S_%7Bgen%7D "S_{gen}")
-    benchmark when alpha \> 2.5 (Fig. (fig:Sgen-alpha))
+    benchmark when alpha \< 2.5 (Fig. (fig:Sgen-alpha))
 -   ![S\_{gen}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;S_%7Bgen%7D "S_{gen}")
-    benchmark when there is harvest
+    benchmark when there is harvest, especially uncertain harvest
 
 ![Sgen values for given combinations of alpha and beta for a Ricker
 model](figures/fig_Sgen~alpha.png)
@@ -99,7 +99,7 @@ Two potential solutions to these problems:
 -   Set escapement goals that vary (rule-based categorical and/or
     scaling) depending on various metrics, e.g.:
     -   abundance of returns
-    -   declining body size and/or fecundity
+    -   body size and/or fecundity
     -   risk of low productivity for future cohorts (e.g., habitat
         conditions such as unstable rivers, cumulative effects, climate
         change predictions for ocean and freshwater). In other words, if
@@ -122,4 +122,9 @@ for implementing the two options above:
     ![R/S](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;R%2FS "R/S"),
     trends in fecundity, body size, harvest etc.
 -   Incorporate risk tolerance based on climate change predictions for
-    ocean and freshwater conditions (precautionary)
+    ocean and freshwater conditions (precautionary), either by:
+    -   Coarse: Including more precaution/ buffer of escapement goal
+    -   Fine: Linking observed conditions to fecundity / survival rates
+        (e.g., ocean temps or flood \~ survival) and then using climate
+        change projections to predict impact on future fecundity /
+        survival rates
