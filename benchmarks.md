@@ -2,7 +2,7 @@ Problems with fixed escapement goals and benchmarks based on
 stock-recruit models, in scenarios of variable and low productivity
 ================
 Luke Warkentin
-5/27/2022
+2022-05-27
 
 ## Context
 
