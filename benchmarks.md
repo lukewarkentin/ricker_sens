@@ -46,11 +46,10 @@ Problematic examples:
 -   ![S\_{gen}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;S_%7Bgen%7D "S_{gen}")
     benchmark when there is harvest
 
-![![S\_{gen}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;S_%7Bgen%7D "S_{gen}")
-values for given combinations of alpha and beta for a Ricker
+![Sgen values for given combinations of alpha and beta for a Ricker
 model](figures/fig_Sgen~alpha.png)
 
-## Problems with fixed escapement goals
+## Problems with fixed escapement goals combined with low and variable productivity
 
 If fixed escapement goals are set based on alpha and beta values from
 historic observations only, and do not account for actual observations
