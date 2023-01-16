@@ -1,12 +1,12 @@
 # Get SMSY and Sgen from alpha and beta
 #' Get SMSY and Sgen from alpha and beta
 #'
-#' @param a 
-#' @param b 
-#' @param int_lower 
-#' @param int_upper 
+#' @param a Ricker alpha
+#' @param b Ricker beta
+#' @param int_lower  lower interval for uniroot function to get Sgen. Default to -1
+#' @param int_upper  upper interval for unirtoor function to get Sgen. Default to twice the carrying capacity
 #'
-#' @return
+#' @return data frame with SMSY and Sgen
 #' @export
 #'
 #' @examples

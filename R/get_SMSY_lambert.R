@@ -1,7 +1,7 @@
-#' Get SMSY using [Lambert's equation](https://peerj.com/articles/1623/) 
+#' Get SMSY from alpha and beta using [Lambert's equation](https://peerj.com/articles/1623/) 
 #'
-#' @param a 
-#' @param b 
+#' @param a Ricker alpha
+#' @param b Ricker beta
 #'
 #' @return
 #' @export
