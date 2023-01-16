@@ -2,7 +2,10 @@
 
 library(ggplot2)
 library(purrr)
+library(here)
 options(scipen = 10, digits=9)
+
+source(here("R/get_SMSY_Sgen.R"))
 
 # Make series of alpha and beta values
 alphas <- c(seq(1,2,0.1),seq(2,7,by=0.5)) # alphas values, higher resolution below 2. uniroot function used to get Sgen gives error if you include alpha =1
@@ -13,16 +16,9 @@ names(df) <- c("alpha", "beta")
 # generate SMSY based on alpha and beta
 #df$SMSY = log(df$alpha)*(0.5-0.07*log(df$alpha))/df$beta # Hilborn and Walters equation to estimate SMSY
 
-# function to get SMSY and Sgen from alpha and beta
-get_SMSY_Sgen <- function(a, b, int_lower, int_upper) {
-  SMSY <- log(a)*(0.5-0.07*log(a))/b # Hilborn and Walters equation to estimate SMSY
-  fun_Sgen <- function(Sgen, a, b, SMSY) {Sgen* a * exp( - b*Sgen) - SMSY}
-  Sgen <- uniroot(fun_Sgen, interval=c(int_lower, int_upper), a=a, b=b, SMSY=SMSY)$root
-  est  <- data.frame(SMSY, Sgen)
-  est
-}
+
 # get SMSY and Sgen in new data frame
-ndf <- pmap_dfr(list(df$alpha, df$beta, -1, 1/df$beta*2), get_SMSY_Sgen)
+ndf <- pmap_dfr(list(df$alpha, df$beta), get_SMSY_Sgen)
 # bind SMSY and Sgen to alpha and beta
 df1 <- cbind(df, ndf)
 # function to check whether Sgen is correct. Should be the spawner number 
@@ -33,6 +29,16 @@ check_Sgen <- function(a,b,S) {
 # yes, correctly gets to SMSY
 plot(cbind(check_Sgen(a=df1$alpha, b=df1$beta, S=df1$Sgen), df1$SMSY))
 abline(a=0,b=1, col="orange")
+
+
+# make data frame with alpha and beta from Nicola, Kitsumkalum 
+pops <- read.csv(here("data-in/values-real-populations.csv"))
+npops <- pmap_dfr(list(pops$alpha, pops$beta), get_SMSY_Sgen)
+pops1 <- cbind(pops, npops)
+
+plot(cbind(check_Sgen(a=pops1$alpha, b=pops1$beta, S=pops1$Sgen), pops1$SMSY))
+abline(a=0,b=1, col="orange")
+
 
 # Plot ricker curves with Sgen and SMSY
 plot(type="n", bty="l", x=0, y=0, xlim=c(0,20000), ylim=c(0,20000)) 
@@ -54,6 +60,8 @@ png("figures/fig_SMSY~alpha.png", width=8,height=6, units="in", res=300)
 ggplot(df1, aes(x=alpha, y=SMSY, colour=beta)) +
   geom_point() +
   scale_colour_viridis_c() +
+  geom_point(data=pops1, aes(x=alpha, y=SMSY), size=2, colour='black' ) +
+  geom_text(data=pops1, aes(x=alpha, y=SMSY, label=population), nudge_y=300, colour="black") +
   theme_bw()
 dev.off()
 
@@ -62,6 +70,8 @@ png("figures/fig_Sgen~alpha.png", width=8,height=6, units="in", res=300)
 ggplot(df1, aes(x=alpha, y=Sgen, colour=beta)) +
   geom_point() +
   scale_colour_viridis_c() +
+  geom_point(data=pops1, aes(x=alpha, y=Sgen), size=2, colour='black' ) +
+  geom_text(data=pops1, aes(x=alpha, y=Sgen, label=population), nudge_y=100, colour="black") +
   theme_bw()
 dev.off()
 
