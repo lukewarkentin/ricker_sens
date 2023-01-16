@@ -46,7 +46,7 @@ Problematic examples:
     harvest
 
 ![Sgen values for given combinations of alpha and beta for a Ricker
-model](figures/fig_Sgen~alpha.png)
+model](../figures/fig_Sgen~alpha.png)
 
 ## Problems with fixed escapement goals combined with low and variable productivity
 

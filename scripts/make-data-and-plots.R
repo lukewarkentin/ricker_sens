@@ -1,11 +1,12 @@
-# Compare ricker curves and SMSY values
+# See how alpha and beta effect SMSY and Sgen values
 
 library(ggplot2)
 library(purrr)
 library(here)
+library(gsl) # need for lambert_W() function
 options(scipen = 10, digits=9)
-
-source(here("R/get_SMSY_Sgen.R"))
+# Source function code
+walk(list.files(here("R"), full.names = TRUE), source)
 
 # Make series of alpha and beta values
 alphas <- c(seq(1,2,0.1),seq(2,7,by=0.5)) # alphas values, higher resolution below 2. uniroot function used to get Sgen gives error if you include alpha =1
@@ -19,6 +20,12 @@ names(df) <- c("alpha", "beta")
 
 # get SMSY and Sgen in new data frame
 ndf <- pmap_dfr(list(df$alpha, df$beta), get_SMSY_Sgen)
+# Check with lambert method
+
+SMSY_lam <- pmap(list(a=df$alpha, b=df$beta), SMSY_lambert)
+plot(ndf$SMSY, SMSY_lam)
+abline(a=0,b=1, col="orange")
+
 # bind SMSY and Sgen to alpha and beta
 df1 <- cbind(df, ndf)
 # function to check whether Sgen is correct. Should be the spawner number 
@@ -39,17 +46,6 @@ pops1 <- cbind(pops, npops)
 plot(cbind(check_Sgen(a=pops1$alpha, b=pops1$beta, S=pops1$Sgen), pops1$SMSY))
 abline(a=0,b=1, col="orange")
 
-
-# Plot ricker curves with Sgen and SMSY
-plot(type="n", bty="l", x=0, y=0, xlim=c(0,20000), ylim=c(0,20000)) 
-abline(a=0, b=1, lty=3, col="gray")
-#for(i in sample(1:nrow(df), size=5, replace=FALSE)) {
-for(i in 1:nrow(df1)) {
-  curve(df1$alpha[i]*x * exp(-df1$beta[i]*x), add=TRUE, col=i)
-  abline(v=df1$Sgen[i], col=i, lty=2)
-  abline(v=df1$SMSY[i], col=i)
-#  text(x=1000+i*10000,y=30000, col=i, label=df$beta[i])
-}
 
 # Plot how SMSY and Sgen change with alpha and beta
 if(!dir.exists("figures"))
@@ -96,4 +92,18 @@ dev.off()
 
 # SMSY and Sgen very sensitive to beta, alpha is secondary. 
 # For given value of beta, Sgen is highest at intermediate alpha. 
+
+
+
+
+# # Plot ricker curves with Sgen and SMSY
+# plot(type="n", bty="l", x=0, y=0, xlim=c(0,20000), ylim=c(0,20000)) 
+# abline(a=0, b=1, lty=3, col="gray")
+# #for(i in sample(1:nrow(df), size=5, replace=FALSE)) {
+# for(i in 1:nrow(df1)) {
+#   curve(df1$alpha[i]*x * exp(-df1$beta[i]*x), add=TRUE, col=i)
+#   abline(v=df1$Sgen[i], col=i, lty=2)
+#   abline(v=df1$SMSY[i], col=i)
+#   #  text(x=1000+i*10000,y=30000, col=i, label=df$beta[i])
+# }
 

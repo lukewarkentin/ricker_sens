@@ -7,6 +7,7 @@ output: rmarkdown::github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(here)
 ```
 
 ## Context
@@ -37,7 +38,7 @@ Problematic examples:
 
 
 ```{r Sgen-alpha, fig.cap="Sgen values for given combinations of alpha and beta for a Ricker model", echo=FALSE}
-knitr::include_graphics('figures/fig_Sgen~alpha.png')
+knitr::include_graphics(here('figures/fig_Sgen~alpha.png'))
 ```
 
 ## Problems with fixed escapement goals combined with low and variable productivity
