@@ -1,5 +1,5 @@
 ---
-title: "Problems with fixed escapement goals and benchmarks based on stock-recruit models, in scenarios of variable and low productivity"
+title: "Potential issues with fixed escapement goals and benchmarks based on stock-recruit models, in scenarios of variable and low productivity"
 author: "Luke Warkentin"
 date: "2022-05-27"
 output: rmarkdown::github_document

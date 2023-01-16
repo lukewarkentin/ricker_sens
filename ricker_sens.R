@@ -60,7 +60,7 @@ dev.off()
 # Sgen
 png("figures/fig_Sgen~alpha.png", width=8,height=6, units="in", res=300)
 ggplot(df1, aes(x=alpha, y=Sgen, colour=beta)) +
-  geom_point()+
+  geom_point() +
   scale_colour_viridis_c() +
   theme_bw()
 dev.off()
@@ -70,7 +70,7 @@ dev.off()
 # All, alpha and beta axes
 png("figures/fig_beta~alpha.png", width=8,height=6, units="in", res=300)
 ggplot(df1, aes(x=alpha, y=beta, color=SMSY, size=Sgen)) +
-  geom_point()+
+  geom_point() +
   scale_colour_viridis_c() +
   theme_bw()
 dev.off()
@@ -78,7 +78,7 @@ dev.off()
 # All, Sgen and SMSY axes
 png("figures/fig_Sgen~SMSY.png", width=8,height=6, units="in", res=300)
 ggplot(df1, aes(x=SMSY, y=Sgen, color=alpha, fill=alpha, size=beta)) +
-  geom_point(shape=21)+
+  geom_point(shape=21) +
   scale_colour_viridis_c() +
   scale_fill_viridis_c(alpha=0.5) +
   theme_bw()
