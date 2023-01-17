@@ -4,7 +4,7 @@ author: "Luke Warkentin"
 date: "2023-01-16"
 output: 
     html_document:
-          fig_caption: yes
+          fig_caption: TRUE
           highlight: zenburn
           theme: journal
           smooth_scroll: yes
@@ -38,15 +38,15 @@ Assumptions of benchmarks from model parameters:
 
 Problematic examples: 
 
-* $S_{gen}$ benchmark when alpha < 2.5 (Holt et al. 2018) (Fig. \@ref(fig:Sgen-alpha))
+* $S_{gen}$ benchmark when alpha < 2.5 (Holt et al. 2018) (Fig. 1)
 * Ricker benchmarks when actual recruits per spawner is below alpha and replacement (especially for multiple years) 
 
-```{r Sgen-alpha, fig.cap="Sgen values for given combinations of alpha and beta for a Ricker model", echo=FALSE}
-knitr::include_graphics(here('figures/fig_Sgen~alpha.png'))
+```{r Sgen-alpha, eval=TRUE, fig.cap="Figure 1. Sgen values for given combinations of alpha and beta for a Ricker model", echo=FALSE}
+knitr::include_graphics(here::here('figures/fig_Sgen~alpha.png'))
 ```
 
 
-```{r SMSY-alpha, fig.cap="SMSY values for given combinations of alpha and beta for a Ricker model", echo=FALSE}
+```{r SMSY-alpha, fig.cap="Figure 2. SMSY values for given combinations of alpha and beta for a Ricker model", echo=FALSE}
 knitr::include_graphics(here('figures/fig_SMSY~alpha.png'))
 ```
 
