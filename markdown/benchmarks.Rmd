@@ -27,22 +27,19 @@ Many salmon populations are at historic low abundance.
   * Recent past: ocean (rapid ocean warming; Cheng et al. 2021) and freshwater (floods, heat dome)
   * Projected based on climate change
 
-Current policy relies on status, usually compares abundance of spawners to a benchmark. Benchmarks can be based on estimated model parameters (e.g., $S_{gen}$)  or a percentile of recorded abundance. Can also be based on multiple metrics such as short and long term trends and distribution (e.g., integrated status assessments, Salmon Scanner).
+Current policy relies on status, usually compares abundance of spawners to a benchmark. Benchmarks can be based on estimated model parameters (e.g., $SMSY$, $S_{gen}$)  or a percentile of recorded abundance. Can also be based on multiple metrics such as short and long term trends and distribution (e.g., integrated status assessments, Salmon Scanner).
 
 Assumptions of benchmarks from model parameters:
 
-* Alpha and beta reflect 'true' characteristics of population *and climate and ecosystem conditions that are implicit in observations of recruitment* in current and future states
+* Alpha and beta reflect 'true' characteristics of population and climate and ecosystem conditions that are implicit in observations of recruitment in current and future states
 * Given number of spawners will result in a given number of recruits, i.e., no low productivity years or black swan events
 * Uses alpha and beta from full time series, ignoring recent trends in recruits per spawner (which could be < 1, i.e., below replacement)
-* No harvest (sometimes)
 * Spawners at maximum sustainable yield ($SMSY$) is an appropriate target for the population (relies on population actually behaving according to alpha and beta parameters, not on actual survival rates observed, especially in recent years)
 
 Problematic examples: 
 
-* $S_{gen}$ benchmark when actual recruits per spawner is below alpha and replacement (especially for multiple years)
-* $S_{gen}$ benchmark when alpha < 2.5 (Fig. \ref(fig:Sgen-alpha))
-* $S_{gen}$ benchmark when there is harvest, especially uncertain harvest
-
+* $S_{gen}$ benchmark when alpha < 2.5 (Holt et al. 2018) (Fig. \@ref(fig:Sgen-alpha))
+* Ricker benchmarks when actual recruits per spawner is below alpha and replacement (especially for multiple years) 
 
 ```{r Sgen-alpha, fig.cap="Sgen values for given combinations of alpha and beta for a Ricker model", echo=FALSE}
 knitr::include_graphics(here('figures/fig_Sgen~alpha.png'))
