@@ -9,7 +9,7 @@ options(scipen = 10, digits=9)
 walk(list.files(here("R"), full.names = TRUE), source)
 
 # Make series of alpha and beta values
-alphas <- c(seq(1,2,0.1),seq(2,7,by=0.5)) # alphas values, higher resolution below 2. uniroot function used to get Sgen gives error if you include alpha =1
+alphas <- c(seq(1,2,0.1),seq(2,7,by=0.05)) # alphas values, higher resolution below 2. uniroot function used to get Sgen gives error if you include alpha =1
 betas <- 1/(10000 * seq(0.5, 1.5, 0.1)) # betas centered at 1/10000 (carrying capacity =10000) with variation in carrying capacity +/- 50%
 # make into a data frame
 df <- expand.grid(alphas, betas)
@@ -70,6 +70,23 @@ ggplot(df1, aes(x=alpha, y=Sgen, colour=beta)) +
   geom_text(data=pops1, aes(x=alpha, y=Sgen, label=population), nudge_y=100, colour="black") +
   theme_bw()
 dev.off()
+
+# Sgen no pops.
+png("figures/fig_Sgen~alpha-basic.png", width=6,height=4, units="in", res=300)
+ggplot(df1, aes(x=alpha, y=Sgen, colour=beta)) +
+  #geom_point(size=1) +
+  geom_line(aes(group=beta), linewidth=0.5) +
+  scale_colour_viridis_c() +
+  ylab(expression(S[gen])) +
+  xlab(expression(alpha)) +
+  labs(col = expression(beta)) +
+  scale_x_continuous(breaks = 1:7) +
+  coord_cartesian(expand = FALSE,ylim = c(0, max(df1$Sgen +100)), xlim = c(0.8,7.2), clip = "off") +
+  # geom_point(data=pops1, aes(x=alpha, y=Sgen), size=2, colour='black' ) +
+  # geom_text(data=pops1, aes(x=alpha, y=Sgen, label=population), nudge_y=100, colour="black") +
+  theme_classic()
+dev.off()
+
 
 # Both are very sensitive to beta. SMSY is more sensitive to alpha. Sgen not very sensitive to alpha.
 
